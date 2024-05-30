@@ -26,6 +26,18 @@ const Chat = ({ username = "Guest", room, socket, randomChatColor }) => {
     setMessage("");
   };
 
+  const generateRandomName = () => {
+    const length = 6;
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
+  };
+
   return (
     <div className="flex items-center justify-center h-full">
       <div className="w-1/5 h-[600px] bg-zinc-400 flex flex-col justify-between">
@@ -47,7 +59,9 @@ const Chat = ({ username = "Guest", room, socket, randomChatColor }) => {
                 >
                   <div>{msg.message}</div>
                   <div className="w-full flex justify-end text-xs">
-                    {msg.username === "" ? `Guest` : msg.username}
+                    {msg.username === ""
+                      ? `Guest-${generateRandomName()}`
+                      : msg.username}
                   </div>
                 </div>
               </div>
