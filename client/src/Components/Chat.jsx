@@ -72,13 +72,7 @@ const Chat = ({ username = "Guest", room, socket, randomChatColor }) => {
                   )}
                   <div className="w-[190px]">{msg.message}</div>
                   <div>
-                    <div
-                      className={`${
-                        username === msg.username
-                          ? "justify-end"
-                          : "justify-end"
-                      } flex text-xs justify-end`}
-                    >
+                    <div className="flex text-xs justify-end">
                       <p>{msg.date}</p>
                     </div>
                   </div>
