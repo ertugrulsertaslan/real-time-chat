@@ -20,6 +20,7 @@ const Chat = ({ username = "Guest", room, socket, randomChatColor }) => {
       room: room,
       date:
         new Date(Date.now).getHours() + ":" + new Date(Date.now).getMinutes(),
+      randomChatColor,
     };
     await socket.emit("message", messageContent);
     setMessageList((prev) => [...prev, messageContent]);
@@ -54,7 +55,9 @@ const Chat = ({ username = "Guest", room, socket, randomChatColor }) => {
               >
                 <div
                   className={`${
-                    username === msg.username ? "bg-green-600" : "bg-blue-600"
+                    username === msg.username
+                      ? "bg-green-600"
+                      : msg.randomChatColor
                   } w-2/3 h-12 p-2 text-white text-sm m-2 rounded-xl rounded-br-none`}
                 >
                   <div>{msg.message}</div>
