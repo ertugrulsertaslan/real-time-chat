@@ -3,5 +3,5 @@
 @tailwind utilities;
 @font-face {
   font-family: "MyCustomFont";
-  src: url("/public/SFPRODISPLAYBOLD.OTF") format("opentype");
+  src: url("/SFPRODISPLAYBOLD.OTF") format("opentype");
 }
