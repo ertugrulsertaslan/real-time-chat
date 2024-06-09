@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Room from "./Components/Room.jsx";
 import io from "socket.io-client";
@@ -24,10 +24,20 @@ const randomColor = () => {
 const randomChatColor = randomColor();
 
 function App() {
+  const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
 
   const [chatScreen, setChatScreen] = useState(false);
+
+  useEffect(() => {
+    socket.on("error", (error) => {
+      setError(error);
+    });
+    socket.on("roomJoined", (data) => {
+      setChatScreen(true);
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -37,8 +47,8 @@ function App() {
           room={room}
           setUsername={setUsername}
           setRoom={setRoom}
-          setChatScreen={setChatScreen}
           socket={socket}
+          error={error}
         />
       ) : (
         <Chat

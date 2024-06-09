@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Room = ({
-  username = `Guest`,
-  room,
-  setUsername,
-  setRoom,
-  setChatScreen,
-  socket,
-}) => {
+const Room = ({ username, room, setUsername, setRoom, error, socket }) => {
+  const generateRandomName = () => {
+    const length = 6;
+    const charset =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let password = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset[randomIndex];
+    }
+    return password;
+  };
+
   const handleClick = () => {
-    socket.emit("room", room);
-    setChatScreen(true);
+    const randomUserName = `Guest-${generateRandomName()}`;
+    const data = {
+      username: username,
+      room: room,
+    };
+    if (!username) {
+      setUsername(randomUserName);
+    }
+    let _username = username || randomUserName;
+    socket.emit("room", { room, username: _username });
   };
   return (
     <div className="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 p-10">
@@ -18,6 +31,7 @@ const Room = ({
         <div className="w-full h-[600px] overflow-y-auto mt-3">
           <div className="flex flex-col justify-center items-center h-full">
             <h2 className="font-custom text-3xl text-customBlue">Username</h2>
+            {error && <p>{error}</p>}
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
