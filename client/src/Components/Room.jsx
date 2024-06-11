@@ -15,10 +15,6 @@ const Room = ({ username, room, setUsername, setRoom, error, socket }) => {
 
   const handleClick = () => {
     const randomUserName = `Guest-${generateRandomName()}`;
-    const data = {
-      username: username,
-      room: room,
-    };
     if (!username) {
       setUsername(randomUserName);
     }
@@ -31,7 +27,7 @@ const Room = ({ username, room, setUsername, setRoom, error, socket }) => {
         <div className="w-full h-[600px] overflow-y-auto mt-3">
           <div className="flex flex-col justify-center items-center h-full">
             <h2 className="font-custom text-3xl text-customBlue">Username</h2>
-            {error && <p>{error}</p>}
+            {error && <p className="text-red-500 font-bold">{error}</p>}
             <input
               value={username}
               onChange={(e) => setUsername(e.target.value)}
