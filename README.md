@@ -3,6 +3,13 @@
 
 Realtime chat app made with ReactJS and socket.io.
 
+### Screenshots 📸
+
+<div style="display: flex; flex-direction: row;">
+    <img src="screenshots/home-page.png" alt="Home Page" style="width: 39%; margin-right: 4%;">
+    <img src="screenshots/chat-screen.png" alt="Chat Screen" style="width: 45%;">
+</div>
+
 ## Features ✨
 
 - ⚡ Real-Time Messaging: Instant delivery of messages using Socket.io.
@@ -61,12 +68,7 @@ after running scripts go to `http://localhost:5173` with your browser to use the
 
 
 
-### Screenshots 📸
 
-<div style="display: flex; flex-direction: row;">
-    <img src="screenshots/home-page.png" alt="Home Page" style="width: 39%; margin-right: 4%;">
-    <img src="screenshots/chat-screen.png" alt="Chat Screen" style="width: 45%;">
-</div>
 
 
 ## License 📄
